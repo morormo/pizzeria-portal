@@ -1,58 +1,57 @@
 import React from 'react';
-import styles from './Kitchen.module.scss';
+import styles from './WaiterOrderId.module.scss';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
 
-const Kitchen = () => {
-  const meals = [
+const WaiterOrderId = () => {
+  const order = [
     {
       id: 1,
-      table: 1,
       meal: 'pizza',
+      price: '$20',
       options: ['cheese', 'tomatoes', 'oregano'],
     },
     {
       id: 2,
-      table: 4,
       meal: 'dinner',
+      price: '$30',
       options: ['rotisserie chicken'],
     },
   ];
 
-  const [checked, setChecked] = React.useState(true);
-
-  const handleChange = event => {
-    setChecked(event.target.checked);
-  };
+  const table = '1';
 
   return (
     <div className={styles.component}>
       <div className={styles.row}>
         <div className={styles.column}>
           <Paper className={styles.paper}>
+            <div>
+              <h3 className={styles.tableHeader}>
+                Table: <span className={styles.table}>{table}</span>
+              </h3>
+            </div>
             <Table>
               <TableHead>
                 <TableRow>
                   <TableCell>Id</TableCell>
-                  <TableCell>Table</TableCell>
                   <TableCell>Meal</TableCell>
+                  <TableCell>Price</TableCell>
                   <TableCell className={styles.optionsHeader}>Options</TableCell>
-                  <TableCell>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {meals.map(row => (
+                {order.map(row => (
                   <TableRow key={row.id}>
                     <TableCell className={styles.rowContent} component="th" scope="row">
                       {row.id}
                     </TableCell>
-                    <TableCell className={styles.rowContent}>{row.table}</TableCell>
                     <TableCell className={styles.rowContent}>{row.meal}</TableCell>
+                    <TableCell className={styles.rowContent}>{row.price}</TableCell>
                     <TableCell>
                       <div>
                         {row.options.map(option => (
@@ -60,13 +59,12 @@ const Kitchen = () => {
                         ))}
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <Checkbox checked={null} onChange={handleChange} value="primary" inputProps={{ 'aria-label': 'primary checkbox' }} />
-                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
+            <h3>Order amount:</h3>
+            <p className={styles.orderPrice}>$50</p>
           </Paper>
         </div>
       </div>
@@ -74,4 +72,4 @@ const Kitchen = () => {
   );
 };
 
-export default Kitchen;
+export default WaiterOrderId;

@@ -1,15 +1,39 @@
 import React from 'react';
 import styles from './HomePage.module.scss';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Tables from '../Tables/Tables';
+import Waiter from '../Waiter/Waiter';
 
+const Homepage = () => {
+  // eslint-disable-next-line quotes
+  const ordersHeader = "List of today's orders:";
+  // eslint-disable-next-line quotes
+  const tablesHeader = "List of today's events and reservations:";
 
-class HomePage extends React.Component {
-  render() {
-    return(
-      <div className={styles.component}>
-        <h2>HomePage view</h2>
+  return (
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography className={styles.header} variant="h5">
+            {ordersHeader}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Waiter />
+      <div className={styles.tables}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography className={styles.header} variant="h5">
+              {tablesHeader}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Tables />
       </div>
-    );
-  }
-}
+    </>
+  );
+};
 
-export default HomePage;
+export default Homepage;
